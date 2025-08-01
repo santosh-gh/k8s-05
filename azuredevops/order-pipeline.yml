@@ -75,9 +75,9 @@ stages:
                   azureResourceGroup: $(aksResourceGroup)
                   kubernetesCluster: $(aksCluster)
                   namespace: $(namespace)
-                  command: install
+                  command: upgrade
                   chartType: FilePath
                   chartPath: '$(Pipeline.Workspace)/storehelmchart/order'
-                  releaseName: 'orderservice'
+                  releaseName: 'release1'
                   install: true
                   waitForExecution: true                  
