@@ -39,7 +39,7 @@ stages:
             displayName: Publish Manifest
             inputs:
               artifactName: $(artifactName)
-              path: $(artifactName)
+              path: $(artifactName)/order
 
   - stage: Deploy
     jobs:
