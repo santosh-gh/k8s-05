@@ -12,7 +12,7 @@ variables:
   acrName: 'acronlinestoredevuksouth001'
   namespace: 'default'
   environment: "dev"
-  artifactName: 'helmchart'
+  artifactName: 'storehelmchart/order'
   imageTag: v1 #$(Build.BuildId)   
   imageName: 'order'
 
@@ -39,7 +39,7 @@ stages:
             displayName: Publish Manifest
             inputs:
               artifactName: $(artifactName)
-              path: 'storehelmchart/order'
+              path: $(artifactName)
 
   - stage: Deploy
     jobs:
