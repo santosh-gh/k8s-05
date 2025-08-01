@@ -1,51 +1,69 @@
 trigger: none
 
+pool:
+  vmImage: 'ubuntu-latest'
+
 variables:
   serviceConnection: 'arm-svc-con'
   aksCluster: 'aks-onlinestore-dev-uksouth-001'
   aksResourceGroup: 'rg-onlinestore-dev-uksouth-001'
+  acrServiceConnection: 'acr-svc-connection'
+  aksServiceConnection: 'aks-svc-connection'
+  acrName: 'acronlinestoredevuksouth001'
   namespace: 'default'
-
-pool:
-  vmImage: ubuntu-latest
+  environment: "dev"
+  artifactName: 'storehelmchart'
 
 stages:
   - stage: Build
-    displayName: Build and publish stage
+    displayName: Build and Publish
     jobs:
       - job: BuildPublishDockerImages
         displayName: Build Publish Docker Images
-        steps:
-          - task: PublishBuildArtifacts@1
+        steps:          
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Manifest
             inputs:
-              PathtoPublish: '$(System.DefaultWorkingDirectory)/manifests/config'
-              ArtifactName: 'config-manifests'
-              publishLocation: 'Container'
-  
-  - stage: Deploy
-    displayName: Deploy stage
-    dependsOn: Build
+              artifactName: $(artifactName)
+              path: $(artifactName)
 
+  - stage: Deploy
     jobs:
-    - deployment: Deploy
-      displayName: Deploy
-      pool:
-        vmImage: ubuntu-latest
-      environment: 'Dev'
+    - deployment: DeployAKS
+      displayName: Deploy AKS
+      environment: $(environment)
       strategy:
         runOnce:
           deploy:
             steps:
-            - task: DownloadPipelineArtifact@2
-              inputs:
-                buildType: current               
-                artifactName: config-manifests
-                targetPath: $(System.ArtifactsDirectory)/manifests/config
-            
-            - template: appTemplates/deploy.yml
-              parameters:
-                serviceConnection: $(serviceConnection)
-                aksObject: 'config'
-                manifestPath: $(System.ArtifactsDirectory)/manifests/config
-                aksResourceGroup: $(aksResourceGroup)                
-                aksCluster: $(aksCluster)
+              - download: current
+                artifact: $(artifactName)
+
+              - script: |
+                  echo "Workspace Directory: $(Pipeline.Workspace)"
+                  ls -R "$(Pipeline.Workspace)"
+
+              - task: AzureCLI@2
+                displayName: Get AKS Credentials
+                inputs:
+                  azureSubscription: $(serviceConnection)
+                  scriptType: bash
+                  scriptLocation: inlineScript
+                  inlineScript: |
+                    echo "Getting AKS credentials..."
+                    az aks get-credentials --name $(aksCluster) --resource-group $(aksResourceGroup) --overwrite-existing
+
+              - task: HelmDeploy@1
+                displayName: Helm Upgrade/Install
+                inputs:
+                  connectionType: 'Azure Resource Manager'
+                  azureSubscription: $(serviceConnection)
+                  azureResourceGroup: $(aksResourceGroup)
+                  kubernetesCluster: $(aksCluster)
+                  namespace: $(namespace)
+                  command: upgrade
+                  chartType: FilePath
+                  chartPath: '$(Pipeline.Workspace)/storehelmchart/config'
+                  releaseName: 'test'
+                  install: true
+                  waitForExecution: false
