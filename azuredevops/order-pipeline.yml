@@ -39,7 +39,7 @@ stages:
             displayName: Publish Manifest
             inputs:
               artifactName: $(artifactName)
-              path: $(artifactName)/order
+              path: $(artifactName)
 
   - stage: Deploy
     jobs:
@@ -75,7 +75,7 @@ stages:
                   azureResourceGroup: $(aksResourceGroup)
                   kubernetesCluster: $(aksCluster)
                   namespace: $(namespace)
-                  command: upgrade
+                  command: install
                   chartType: FilePath
                   chartPath: '$(Pipeline.Workspace)/storehelmchart/order'
                   releaseName: 'orderservice'
