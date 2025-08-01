@@ -80,4 +80,4 @@ stages:
                   chartPath: '$(Pipeline.Workspace)/storehelmchart/order'
                   releaseName: 'test'
                   install: true
-              
+                  waitForExecution: false                  
