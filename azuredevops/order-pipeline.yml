@@ -12,7 +12,7 @@ variables:
   acrName: 'acronlinestoredevuksouth001'
   namespace: 'default'
   environment: "dev"
-  artifactName: 'storehelmchart/order'
+  artifactName: 'storehelmchart'
   imageTag: v1 #$(Build.BuildId)   
   imageName: 'order'
 
