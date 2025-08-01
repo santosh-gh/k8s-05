@@ -66,4 +66,14 @@
 
 
 # helmify  
+C:\k8s-05>helmify -f ./manifests/order ./storehelmchart/order
+
+C:\k8s-05>helmify -f ./manifests/product ./storehelmchart/product
+
+C:\k8s-05>helmify -f ./manifests/store-front ./storehelmchart/store-front
+
+C:\k8s-05>helmify -f ./manifests/rabbitmq ./storehelmchart/rabbitmq
+
+C:\k8s-05>helmify -f ./manifests/config ./storehelmchart/config
+
 helmify -f /manifests/ helmchart
