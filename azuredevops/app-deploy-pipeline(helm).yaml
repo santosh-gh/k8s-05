@@ -4,7 +4,7 @@ trigger:
       - app/order-service/*
 
 variables:
-  azureSubscription: 'arm-svc-con'
+  azureSubscription: 'ado-service-connection'
   acrName: 'acronlinestoredevuksouth001'
   aksCluster: 'aks-onlinestore-dev-uksouth-001'
   namespace: 'default'
