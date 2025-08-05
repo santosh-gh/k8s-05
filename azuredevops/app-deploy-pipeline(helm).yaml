@@ -1,9 +1,11 @@
 trigger:
-- main
+  paths:
+    include:
+      - app/order-service/*
 
 variables:
   azureSubscription: 'arm-svc-con'
-  acrName: 'acronlinestoredevuksouth001'             # without .azurecr.io
+  acrName: 'acronlinestoredevuksouth001'
   aksCluster: 'aks-onlinestore-dev-uksouth-001'
   namespace: 'default'
   aksResourceGroup: 'rg-onlinestore-dev-uksouth-001'
