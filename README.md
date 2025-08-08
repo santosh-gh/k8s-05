@@ -110,6 +110,8 @@
 
     # Short name for kubectl
 
+        alias k=kubectl
+
     # Show all existing objects
 
         k get all   
