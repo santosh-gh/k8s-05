@@ -33,6 +33,8 @@
 # Directory Structure
 
 ![Directory Structure](image.png)
+![alt text](image.png)
+
 
 # Tetechnology Stack
 
