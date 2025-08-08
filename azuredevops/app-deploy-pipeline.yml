@@ -56,6 +56,6 @@ stages:
                   command: upgrade
                   chartType: FilePath
                   chartPath: '$(Pipeline.Workspace)/$(artifactName)/'
-                  releaseName: 'test'
+                  releaseName: 'online-store'
                   install: true
                   waitForExecution: false                  
