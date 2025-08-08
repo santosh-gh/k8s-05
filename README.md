@@ -100,29 +100,7 @@
 
     # Show all existing objects
 
-        k get all
-
-    # Login to Azure
-        az login
-        az account set --subscription=<subscriptionId>
-        az account show
-
-    # Show existing resources
-        az resource list
-
-    # Variables
-        RESOURCE_GROUP="rg-onlinestore-dev-uksouth-001"
-        AKS_NAME="aks-onlinestore-dev-uksouth-001"
-        ACR_NAME="acronlinestoredevuksouth001"
-
-    # connect to cluster
-        az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME
-
-    # Short name for kubectl
-        alias k=kubectl
-
-    # Show all existing objects
-        k get all
+        k get all   
 
 # Helm and Helmify
 
