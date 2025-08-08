@@ -30,7 +30,6 @@
     # RabbitMQ: Message queue for an order queue.
 
 # Directory Structure
-
 ![Directory Structure](image.png)
 
 # Tetechnology Stack
