@@ -20,6 +20,18 @@
     GitHub: https://github.com/santosh-gh/k8s-04
     YouTube: https://www.youtube.com/watch?v=VAiR3sNavh0
 
+# Architesture
+
+![Store Architesture](aks-store-architecture.png)
+
+    # Store front: Web application for customers to view products and place orders.
+    # Product service: Shows product information.
+    # Order service: Places orders.
+    # RabbitMQ: Message queue for an order queue.
+
+# Directory Structure
+
+![Directory Structure](image.png) 
 
 # Tetechnology Stack
 
