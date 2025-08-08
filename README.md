@@ -42,7 +42,6 @@
     HelmChart
     Helmify
 
-
 # Steps
 
     1. Infra deployment using AzCLI/Bicep command line or 
