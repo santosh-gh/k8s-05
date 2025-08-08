@@ -31,7 +31,7 @@
 
 # Directory Structure
 
-![Directory Structure](image.png) 
+![Directory Structure](image.png)
 
 # Tetechnology Stack
 
