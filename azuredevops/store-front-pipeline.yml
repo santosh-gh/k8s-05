@@ -5,10 +5,6 @@ pool:
 
 variables:
 - group: 'k8s-dev'
-- name: namespace
-  value: 'default'
-- name: artifactName 
-  value: 'helmchart'
 - name: imageTag
   value: $(Build.BuildId)
 - name: imageName
@@ -19,7 +15,7 @@ stages:
     displayName: Build and Publish
     jobs:
       - job: BuildPublishDockerImages
-        displayName: Build Publish Docker Images
+        displayName: Build and Publish Docker Images
         steps:
           - task: DockerInstaller@0
             displayName: Install Docker
