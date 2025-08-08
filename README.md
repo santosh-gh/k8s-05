@@ -29,12 +29,9 @@
     # Order service: Places orders.
     # RabbitMQ: Message queue for an order queue.
 
-
 # Directory Structure
 
 ![Directory Structure](image.png)
-![alt text](image.png)
-
 
 # Tetechnology Stack
 
