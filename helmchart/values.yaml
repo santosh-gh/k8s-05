@@ -12,7 +12,7 @@ orderService:
       orderQueueUsername: username
     image:
       repository: acronlinestoredevuksouth001.azurecr.io/order
-      tag: v1
+      tag: 338
     resources:
       limits:
         cpu: 75m
@@ -49,7 +49,7 @@ productService:
       aiServiceUrl: http://ai-service:5001/
     image:
       repository: acronlinestoredevuksouth001.azurecr.io/product
-      tag: v1
+      tag: 339
     resources:
       limits:
         cpu: 2m
@@ -97,7 +97,7 @@ storeFront:
   storeFront:
     image:
       repository: acronlinestoredevuksouth001.azurecr.io/store-front
-      tag: v1
+      tag: 340
     resources:
       limits:
         cpu: "1"
